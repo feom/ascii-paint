@@ -37,11 +37,10 @@ public interface Renderable {
     /**
      * Fills with the given colour according to
      * the bucket fill algorithm of ms paint application.
-     *
-     * @param startPoint the start point
+     *  @param startPoint the start point
      * @param colour the colour to use
      */
-    void bucketFill(Point startPoint, char colour);
+    void bucketFill(Point startPoint, Character colour);
 
     /**
      * The width of this container.

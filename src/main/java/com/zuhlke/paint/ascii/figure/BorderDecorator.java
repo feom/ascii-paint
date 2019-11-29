@@ -54,7 +54,7 @@ public class BorderDecorator implements Renderable {
     }
 
     @Override
-    public void bucketFill(Point startPoint, char colour) {
+    public void bucketFill(Point startPoint, Character colour) {
         decoratedRenderable.bucketFill(startPoint, colour);
     }
 

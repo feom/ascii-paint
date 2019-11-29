@@ -88,6 +88,11 @@ class CommandFactoryTests {
     @Test
     void createUnknownCommand() {
         List<String> command = Stream.of("U").collect(Collectors.toList());
+        try {
+            commandFactory.createCommand(command);
+        } catch (AsciiPaintException e) {
+            e.printStackTrace();
+        }
         assertThrows(AsciiPaintException.class, () -> commandFactory.createCommand(command));
     }
 

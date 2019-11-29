@@ -1,9 +1,6 @@
 package com.zuhlke.paint.ascii.figure;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -26,55 +23,56 @@ public class Canvas implements Renderable {
         this.emptyColour = ' ';
     }
 
-    @Override
-    public void bucketFill(Point startPoint, char colour) {
-        if (!isInBounds(startPoint)) {
-            return;
-        }
-        Character startColour = getColour(startPoint);
-        doFill(startPoint, startColour, colour);
-    }
 
     /**
-     * Recursive bucket fill algorithm:
-     * From the current point traverse left, right, up and down and fill
-     * with target colour as long as current point is in bounds,
-     * matches the start colour and is not already filled with target colour.
-     *
-     * @param currentPoint the current point
-     * @param startColour the start colour
-     * @param targetColour the target colour
-     *
+     * Breadth-first-search bucket (flood) fill algorithm using a queue to store points.
+     * @param startPoint the start point
+     * @param targetColour the colour to fill with
      */
-    private void doFill(Point currentPoint, char startColour, char targetColour) {
-        Character currentColour = getColour(currentPoint);
-
-        if (!isInBounds(currentPoint)) {
+    @Override
+    public void bucketFill(Point startPoint, Character targetColour) {
+        Character startColour = getColour(startPoint);
+        if (isOutOfBounds(startPoint)) {
             return;
         }
 
-        if (!currentColour.equals(startColour)) {
+        if (startColour.equals(targetColour)) {
             return;
         }
 
-        if (currentColour.equals(targetColour)) {
+        canvasMap.put(startPoint, targetColour);
+        Queue<Point> queue = new PriorityQueue<>(new PointComparator());
+        queue.add(startPoint);
+        while (!queue.isEmpty()) {
+            Point point = queue.remove();
+
+            Point left = Point.create(point.getX() - 1, point.getY());
+            handlePoint(queue, left, startColour, targetColour);
+            Point right = Point.create(point.getX() + 1, point.getY());
+            handlePoint(queue, right, startColour, targetColour);
+            Point up = Point.create(point.getX(), point.getY() - 1);
+            handlePoint(queue, up, startColour, targetColour);
+            Point down = Point.create(point.getX(), point.getY() + 1);
+            handlePoint(queue, down, startColour, targetColour);
+        }
+    }
+
+    private void handlePoint(Queue<Point> queue, Point point, Character startColour, Character targetColour) {
+        if (isOutOfBounds(point)) {
             return;
         }
-
-        canvasMap.put(currentPoint, targetColour);
-
-        Point left = Point.create(currentPoint.getX() - 1, currentPoint.getY());
-        doFill(left, startColour, targetColour);
-        Point right = Point.create(currentPoint.getX() + 1, currentPoint.getY());
-        doFill(right, startColour, targetColour);
-        Point up = Point.create(currentPoint.getX(), currentPoint.getY() - 1);
-        doFill(up, startColour, targetColour);
-        Point down = Point.create(currentPoint.getX(), currentPoint.getY() + 1);
-        doFill(down, startColour, targetColour);
+        if (getColour(point).equals(startColour)) {
+            canvasMap.put(point, targetColour);
+            queue.add(point);
+        }
     }
 
     private boolean isInBounds(Point point) {
         return point.getX() >= 1 && point.getX() <= width && point.getY() >= 1 && point.getY() <= height;
+    }
+
+    private boolean isOutOfBounds(Point point) {
+        return !isInBounds(point);
     }
 
     private Character getColour(Point point) {
