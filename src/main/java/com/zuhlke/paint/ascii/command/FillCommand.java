@@ -5,9 +5,9 @@ import com.zuhlke.paint.ascii.AsciiPaintException;
 import com.zuhlke.paint.ascii.figure.Point;
 import com.zuhlke.paint.ascii.figure.Renderable;
 
-import static com.zuhlke.paint.ascii.command.CmdArgs.*;
-
 import java.util.List;
+
+import static com.zuhlke.paint.ascii.command.CmdArgs.*;
 
 /**
  * The {@code FillCommand} class represents a bucket fill command.

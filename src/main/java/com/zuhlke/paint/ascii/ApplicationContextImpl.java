@@ -1,8 +1,8 @@
 package com.zuhlke.paint.ascii;
 
 import com.zuhlke.paint.ascii.figure.Renderable;
-import com.zuhlke.paint.ascii.figure.ShapeStrategyFactoryImpl;
 import com.zuhlke.paint.ascii.figure.ShapeStrategyFactory;
+import com.zuhlke.paint.ascii.figure.ShapeStrategyFactoryImpl;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;

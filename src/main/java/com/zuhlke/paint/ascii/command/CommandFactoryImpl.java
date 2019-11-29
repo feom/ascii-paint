@@ -48,19 +48,6 @@ public class CommandFactoryImpl implements CommandFactory {
             return createFunction.create(arguments, applicationContext);
         }
 
-//        if (commandCode.equals(CommandCode.C)) {
-//            return new CanvasCommand(arguments, applicationContext);
-//        } else if (commandCode.equals(CommandCode.L)) {
-//            return new ShapeCommand(arguments, applicationContext);
-//        } else if (commandCode.equals(CommandCode.R)) {
-//            return new ShapeCommand(arguments, applicationContext);
-//        } else if (commandCode.equals(CommandCode.B)) {
-//            return new FillCommand(arguments, applicationContext);
-//        } else if (commandCode.equals(CommandCode.Q)) {
-//            return new QuitCommand(arguments, applicationContext);
-//        } else {
-//        }
-
     }
 
 }

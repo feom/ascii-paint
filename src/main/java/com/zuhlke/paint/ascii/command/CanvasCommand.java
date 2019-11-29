@@ -1,14 +1,16 @@
 package com.zuhlke.paint.ascii.command;
 
-import com.zuhlke.paint.ascii.*;
+import com.zuhlke.paint.ascii.ApplicationContext;
+import com.zuhlke.paint.ascii.AsciiPaintException;
 import com.zuhlke.paint.ascii.figure.BorderDecorator;
 import com.zuhlke.paint.ascii.figure.BorderWidth;
 import com.zuhlke.paint.ascii.figure.Canvas;
 import com.zuhlke.paint.ascii.figure.Renderable;
 
-import static com.zuhlke.paint.ascii.command.CmdArgs.*;
-
 import java.util.List;
+
+import static com.zuhlke.paint.ascii.command.CmdArgs.H;
+import static com.zuhlke.paint.ascii.command.CmdArgs.W;
 
 /**
  * The {@code CanvasCommand} class represents a command to create a new canvas.

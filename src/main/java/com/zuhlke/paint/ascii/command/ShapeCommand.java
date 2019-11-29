@@ -1,11 +1,15 @@
 package com.zuhlke.paint.ascii.command;
 
-import com.zuhlke.paint.ascii.*;
-import com.zuhlke.paint.ascii.figure.*;
-
-import static com.zuhlke.paint.ascii.command.CmdArgs.*;
+import com.zuhlke.paint.ascii.ApplicationContext;
+import com.zuhlke.paint.ascii.AsciiPaintException;
+import com.zuhlke.paint.ascii.figure.Pen;
+import com.zuhlke.paint.ascii.figure.Point;
+import com.zuhlke.paint.ascii.figure.Renderable;
+import com.zuhlke.paint.ascii.figure.ShapeStrategy;
 
 import java.util.List;
+
+import static com.zuhlke.paint.ascii.command.CmdArgs.*;
 
 /**
  * The {@code ShapeCommand} class represents line and rectangle draw commands.
